@@ -14,5 +14,5 @@ Usage
 
 .. code-block:: bash
     
-    $ docker run --name cgit -p 80:80 -v /path/to/repository:/git
+    $ docker run --name cgit -p 80:80 -v /path/to/repository:/git \
     ankitrgadiya/cgit:debian-apache
