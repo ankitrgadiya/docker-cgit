@@ -1,0 +1,15 @@
+image: docker:latest
+
+services:
+  - docker:dind
+
+before_script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker login -u ankitrgadiya -p $DOCKER_PASSWORD
+
+build:
+    script:
+        - docker build -t $CI_REGISTRY/$CI_PROJECT_PATH/cgit:alpine-nginx .
+        - docker tag $CI_REGISTRY/$CI_PROJECT_PATH/cgit:alpine-nginx ankitrgadiya/cgit:alpine-nginx
+        - docker push $CI_REGISTRY/$CI_PROJECT_PATH/cgit:alpine-nginx
+        - docker push ankitrgadiya/cgit:alpine-nginx
