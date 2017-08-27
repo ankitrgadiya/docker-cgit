@@ -1,0 +1,17 @@
+image: docker:latest
+
+services:
+  - docker:dind
+
+build:
+    script:
+        - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+        - docker login -u ankitrgadiya -p $DOCKER_PASSWORD
+        - docker build -t $CI_REGISTRY/$CI_PROJECT_PATH/cgit:debian-nginx .
+        - docker tag $CI_REGISTRY/$CI_PROJECT_PATH/cgit:debian-nginx $CI_REGISTRY/$CI_PROJECT_PATH/cgit:latest
+        - docker tag $CI_REGISTRY/$CI_PROJECT_PATH/cgit:latest ankitrgadiya/cgit:latest
+        - docker tag $CI_REGISTRY/$CI_PROJECT_PATH/cgit:latest ankitrgadiya/cgit:debian-nginx
+        - docker push $CI_REGISTRY/$CI_PROJECT_PATH/cgit:debian-nginx
+        - docker push $CI_REGISTRY/$CI_PROJECT_PATH/cgit:latest
+        - docker push ankitrgadiya/cgit:debian-nginx
+        - docker push ankitrgadiya/cgit:latest
