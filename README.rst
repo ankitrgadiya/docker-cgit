@@ -10,4 +10,6 @@ Supported Tags
 --------------
 
 + :code:`debian-nginx` `debian-nginx/dockerfile
-  <https://github.com/ankitrgadiya/docker-cgit/blob/debian-nginx/Dockerfile)>`
+  <https://github.com/ankitrgadiya/docker-cgit/blob/debian-nginx/Dockerfile>`
++ :code:`debian-apache` `debian-apache/dockerfile
+  <https://github.com/ankitrgadiya/docker-cgit/blog/debian-apache/Dockerfile>`
