@@ -21,6 +21,13 @@ RUN mkdir -p /run/nginx
 # Copy script
 COPY script/init.sh /opt/init.sh
 
+# Syntax highlighting
+COPY assets/syntax.css /opt/syntax.css
+COPY script/syntax-highlighting.sh /usr/lib/cgit/filters/syntax-highlighting.sh
+RUN chmod 777 /usr/lib/cgit/filters/syntax-highlighting.sh
+RUN cat /opt/syntax.css >> /usr/share/webapps/cgit/cgit.css
+RUN rm /opt/syntax.css
+
 # Server
 EXPOSE 80
 CMD ["sh", "/opt/init.sh"]
